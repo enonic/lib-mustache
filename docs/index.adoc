@@ -1,2 +1,70 @@
 = Mustache library
 
+image::https://img.shields.io/badge/xp-6.+-blue.svg[role="right"]
+
+Use power of http://mustache.github.io/[Mustache template language]!
+
+[source,groovy]
+----
+dependencies {
+  include 'com.enonic.lib:lib-mustache:1.0.0-SNAPSHOT'
+}
+----
+
+== Usage
+
+To use this library in your JavaScript code, you first need to require it:
+
+[source,js]
+----
+var mustacheLib = require('/lib/mustache');
+----
+
+Then, you will need a template. For instance, if you have a part, Fruit, you resolve the part with:
+
+[source,js]
+----
+var view = resolve('view/fruit.html');
+----
+
+All the variables used in the template/view must be gathered, from request objects, back-end storage or whatever source you want to use. These should be put into a JSON object:
+
+[source,js]
+----
+var model = {
+    fruits: [
+        {
+            name: 'Apple',
+            color: 'Red'
+        },
+        {
+            name: 'Pear',
+            color: 'Green'
+        }
+    ]
+};
+----
+
+To process template:
+
+[source,js]
+----
+var result = mustacheLib.render(view, model);
+----
+
+== API
+
+This lib has only one method:
+
+=== `render`
+
+This will render provided template and return processed output.
+
+*Parameters*
+
+* `view` (_object_) Location of the template. Use resolve(..) to resolve a template.
+* `model` (_object_) Model that is passed to the view.
+
+== Compatibility
+
+This library is a drop-in replacement for the library in Enonic XP released before 7.0.
