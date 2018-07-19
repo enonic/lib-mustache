@@ -27,6 +27,23 @@ Then, you will need a template. For instance, if you have a part, Fruit, you res
 var view = resolve('view/fruit.html');
 ----
 
+Template:
+
+[source,html]
+----
+<div>
+    {{#fruits}}
+    <div>
+        Name:
+        <div>{{name}}</div>
+        Color:
+        <div>{{color}}</div>
+    </div>
+    {{/fruits}}
+</div>
+
+----
+
 All the variables used in the template/view must be gathered, from request objects, back-end storage or whatever source you want to use. These should be put into a JSON object:
 
 [source,js]
