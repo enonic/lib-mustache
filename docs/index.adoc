@@ -52,6 +52,27 @@ To process template:
 var result = mustacheLib.render(view, model);
 ----
 
+Output:
+
+[source,html]
+----
+<div>
+    <div>
+        Name:
+        <div>Apple</div>
+        Color:
+        <div>Red</div>
+    </div>
+    <div>
+        Name:
+        <div>Pear</div>
+        Color:
+        <div>Green</div>
+    </div>
+</div>
+
+----
+
 == API
 
 This lib has only one method:
