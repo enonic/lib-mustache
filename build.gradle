@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'maven'
-	id 'com.enonic.defaults' version '1.0.3'
+    id 'com.enonic.defaults' version '1.0.3'
 }
 
 repositories {
@@ -15,7 +15,6 @@ repositories {
 dependencies {
     compile "com.enonic.xp:core-api:${xpVersion}"
     compile "com.enonic.xp:portal-api:${xpVersion}"
-	compile 'com.samskivert:jmustache:1.10'
-
+    compile 'com.samskivert:jmustache:1.10'
     testCompile "com.enonic.xp:testing:${xpVersion}"
 }
