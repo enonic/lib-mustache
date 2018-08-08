@@ -2,7 +2,9 @@
 
 image::https://img.shields.io/badge/xp-6.+-blue.svg[role="right"]
 
-Use power of http://mustache.github.io/[Mustache template language]!
+Mustache library allows you to render templates using the http://mustache.github.io/[Mustache template language]!
+
+To start using this library, add the following into your `build.gradle` file:
 
 [source,groovy]
 ----
@@ -13,14 +15,14 @@ dependencies {
 
 == Usage
 
-To use this library in your JavaScript code, you first need to require it:
+To use this library in your JavaScript code, it first needs to be required:
 
 [source,js]
 ----
 var mustacheLib = require('/lib/mustache');
 ----
 
-Then, you will need a template. For instance, if you have a part, Fruit, you resolve the part with:
+Then, you will need to resolve your template/view.
 
 [source,js]
 ----
@@ -44,7 +46,7 @@ Template:
 
 ----
 
-All the variables used in the template/view must be gathered, from request objects, back-end storage or whatever source you want to use. These should be put into a JSON object:
+All the variables used in the template/view must be gathered into a JSON object:
 
 [source,js]
 ----
@@ -92,17 +94,13 @@ Output:
 
 == API
 
-This lib has only one method:
+The following function is  defined in this library.
 
 === `render`
 
-This will render provided template and return processed output.
+Renders a template by expanding its tags using the provided values.
 
 *Parameters*
 
 * `view` (_object_) Location of the template. Use resolve(..) to resolve a template.
-* `model` (_object_) Model that is passed to the view.
-
-== Compatibility
-
-This library is a drop-in replacement for the library in Enonic XP released before 7.0.
+* `model` (_object_) Model used to render the template.

@@ -1,0 +1,28 @@
+= Mustache library
+
+Mustache library allows you to render templates using the http://mustache.github.io/[Mustache template language]!
+
+== Compatibility
+
+[cols="1,1,3", options="header"]
+|===
+|Version
+|XP Version
+|Dependency
+
+|1.0.0
+|6.14.x
+|com.enonic.lib:lib-mustache:1.0.0
+|===
+
+== Build
+
+To build this project, execute the following:
+
+[source,bash]
+----
+./gradlew clean build
+----
+
+== https://github.com/enonic/lib-mustache/tree/master/docs/index.adoc[Documentation]
+
