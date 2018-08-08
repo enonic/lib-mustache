@@ -1,6 +1,6 @@
 = Mustache library
 
-Mustache library allows you to render templates using the http://mustache.github.io/[Mustache template language]!
+Mustache library allows you to render templates using the http://mustache.github.io/[Mustache templating language]!
 
 == Compatibility
 
