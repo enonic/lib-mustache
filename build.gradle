@@ -22,4 +22,5 @@ dependencies {
     compile "com.enonic.xp:portal-api:${xpVersion}"
     compile 'com.samskivert:jmustache:1.10'
     testCompile "com.enonic.xp:testing:${xpVersion}"
+    testCompile 'junit:junit:4.12'
 }

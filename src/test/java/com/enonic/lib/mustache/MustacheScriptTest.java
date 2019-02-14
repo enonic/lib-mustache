@@ -16,7 +16,7 @@ public class MustacheScriptTest
     @Override
     public String getScriptTestFile()
     {
-        return "/site/test/mustache-test.js";
+        return "/test/mustache-test.js";
     }
 
     private void assertHtmlEquals( final String expectedHtml, final String actualHtml )

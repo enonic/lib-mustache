@@ -26,7 +26,7 @@ public class MustacheServiceTest
     public void testProcess()
     {
         final MustacheProcessor processor = this.service.newProcessor();
-        processor.setView( ResourceKey.from( "myapp:/site/test/view/test.html" ) );
+        processor.setView( ResourceKey.from( "myapp:/test/view/test.html" ) );
         processor.setModel( null );
         processor.process();
     }
@@ -40,7 +40,7 @@ public class MustacheServiceTest
         com.enonic.xp.trace.Tracer.setManager( manager );
 
         final MustacheProcessor processor = this.service.newProcessor();
-        processor.setView( ResourceKey.from( "myapp:/site/test/view/test.html" ) );
+        processor.setView( ResourceKey.from( "myapp:/test/view/test.html" ) );
         processor.setModel( null );
         processor.process();
     }
