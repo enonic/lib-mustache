@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'maven'
-    id 'com.enonic.defaults' version '1.0.3'
+    id 'maven-publish'
+    id 'com.enonic.defaults' version '2.0.1'
 }
 
 repositories {
@@ -12,9 +12,15 @@ repositories {
     }
 }
 
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_1_10
+    targetCompatibility = sourceCompatibility
+}
+
 dependencies {
     compile "com.enonic.xp:core-api:${xpVersion}"
     compile "com.enonic.xp:portal-api:${xpVersion}"
     compile 'com.samskivert:jmustache:1.10'
     testCompile "com.enonic.xp:testing:${xpVersion}"
+    testCompile 'junit:junit:4.12'
 }

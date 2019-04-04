@@ -10,6 +10,10 @@ Mustache library allows you to render templates using the http://mustache.github
 |XP Version
 |Dependency
 
+|2.0.0
+|7.0.x
+|com.enonic.lib:lib-mustache:2.0.0
+
 |1.0.0
 |6.14.x
 |com.enonic.lib:lib-mustache:1.0.0

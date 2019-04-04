@@ -24,5 +24,5 @@ exports.testRender = function () {
 };
 
 exports.testExamples = function () {
-    testInstance.runScript('/site/lib/examples/mustache/render.js')
+    testInstance.runScript('/lib/examples/mustache/render.js')
 };
