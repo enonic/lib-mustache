@@ -1,6 +1,6 @@
 = Mustache library
 
-image::https://img.shields.io/badge/xp-6.+-blue.svg[role="right"]
+image::https://img.shields.io/badge/xp-7.+-blue.svg[role="right"]
 
 Mustache library allows you to render templates using the http://mustache.github.io/[Mustache templating language]!
 
