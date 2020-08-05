@@ -18,7 +18,7 @@ compileTestJava {
 
 dependencies {
     compileOnly "com.enonic.xp:portal-api:${xpVersion}"
-    compile 'com.samskivert:jmustache:1.10'
+    compile 'com.samskivert:jmustache:1.15'
     testCompile "com.enonic.xp:testing:${xpVersion}"
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:+"
