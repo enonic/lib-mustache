@@ -26,3 +26,19 @@ exports.testRender = function () {
 exports.testExamples = function () {
     testInstance.runScript('/lib/examples/mustache/render.js')
 };
+
+
+exports.testLambda = function () {
+    const view = resolve('view/lambda.html');
+    const result = mustache.render(view, {
+            name: "Willy",
+            wrapped() {
+                return function(text, render) {
+                    return "<b>" + render(text) + "</b>"
+                }
+            }
+        }
+    );
+
+    assertHtmlEquals('view/lambda-result.html', result);
+};
