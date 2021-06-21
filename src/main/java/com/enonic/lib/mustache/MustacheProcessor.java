@@ -1,11 +1,14 @@
 package com.enonic.lib.mustache;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
-import com.google.common.collect.Maps;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.MustacheException;
 import com.samskivert.mustache.Template;
+
+import jdk.nashorn.api.scripting.AbstractJSObject;
 
 import com.enonic.xp.resource.Resource;
 import com.enonic.xp.resource.ResourceKey;
@@ -77,8 +80,8 @@ public final class MustacheProcessor
         final Resource resource = resourceService.getResource( this.view );
         final Template template = this.compiler.compile( resource.readString() );
 
-        final Map<String, Object> map = this.model != null ? this.model.getMap() : Maps.newHashMap();
-        return template.execute( map );
+        final Map<Object, Object> hash = createHashFromModel();
+        return template.execute( hash );
     }
 
     private RuntimeException handleError( final RuntimeException e )
@@ -99,5 +102,66 @@ public final class MustacheProcessor
             cause( e ).
             message( e.getMessage() ).
             build();
+    }
+
+    private Map<Object, Object> createHashFromModel()
+    {
+        final Map<String, Object> map = this.model == null ? Map.of() : this.model.getMap();
+        final Map<Object, Object> hash = new HashMap<>();
+        for ( Map.Entry<String, Object> entry : map.entrySet() )
+        {
+            final Object value = entry.getValue();
+            if ( value instanceof Function )
+            {
+                Mustache.Lambda lambda = createLambdaFromFunction( (Function) value );
+                hash.put( entry.getKey(), lambda );
+            }
+            else
+            {
+                hash.put( entry.getKey(), value );
+            }
+        }
+        return hash;
+    }
+
+    private Mustache.Lambda createLambdaFromFunction( final Function value )
+    {
+        return ( frag, out ) -> {
+            Object inner = value.apply( null );
+            if (inner instanceof Function) {
+                final Function<Object, Object[]> function = (Function<Object, Object[]>) inner;
+                final Object rendered = function.apply( new Object[]{frag.decompile(), new RenderFunction( frag.context() )} );
+                if ( rendered != null )
+                {
+                    out.write( rendered.toString() );
+                }
+            } else {
+                throw new IllegalStateException("Lambda must be a function");
+            }
+        };
+    }
+
+    private class RenderFunction
+        extends AbstractJSObject
+    {
+        final Object context;
+
+        RenderFunction( final Object context )
+        {
+            this.context = context;
+        }
+
+        @Override
+        public Object call( final Object thiz, final Object... args )
+        {
+            final String text = (String) args[0];
+            return compiler.compile( text ).execute( context );
+        }
+
+        @Override
+        public boolean isFunction()
+        {
+            return true;
+        }
     }
 }
