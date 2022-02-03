@@ -20,7 +20,6 @@ var service = __.newBean('com.enonic.lib.mustache.MustacheService');
  */
 exports.render = function (view, model) {
     var processor = service.newProcessor();
-    log.info("render");
     processor.setView(view);
     processor.setModel(__.toScriptValue(model));
     return processor.process();
