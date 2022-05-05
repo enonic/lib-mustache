@@ -7,7 +7,7 @@ plugins {
 
 repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
     xp.enonicRepo()
 }
 
@@ -18,8 +18,8 @@ compileTestJava {
 
 dependencies {
     compileOnly "com.enonic.xp:portal-api:${xpVersion}"
-    compile 'com.samskivert:jmustache:1.15'
-    testCompile "com.enonic.xp:testing:${xpVersion}"
-    testCompile 'junit:junit:4.13.2'
-    testCompile "org.mockito:mockito-core:+"
+    implementation 'com.samskivert:jmustache:1.15'
+    testImplementation "com.enonic.xp:testing:${xpVersion}"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito:mockito-core:4+"
 }
