@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.enonic.defaults' version '2.1.6'
-    id 'com.enonic.xp.base' version '3.6.2'
+    id 'com.enonic.xp.base'
 }
 
 repositories {
@@ -11,15 +11,17 @@ repositories {
     xp.enonicRepo()
 }
 
-compileTestJava {
-    sourceCompatibility = JavaVersion.VERSION_1_10
-    targetCompatibility = sourceCompatibility
+dependencies {
+    compileOnly xplibs.api.portal
+    implementation 'com.samskivert:jmustache:1.16'
+
+    testImplementation "com.enonic.xp:testing:${xpVersion}"
+    testImplementation platform( 'org.junit:junit-bom:5.13.4' )
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:5+'
 }
 
-dependencies {
-    compileOnly "com.enonic.xp:portal-api:${xpVersion}"
-    implementation 'com.samskivert:jmustache:1.16'
-    testImplementation "com.enonic.xp:testing:${xpVersion}"
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation "org.mockito:mockito-core:5+"
+test {
+    useJUnitPlatform()
 }
