@@ -2,13 +2,13 @@ package com.enonic.lib.mustache;
 
 import java.util.regex.Pattern;
 
-import org.junit.Assert;
-
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 
 import com.enonic.xp.resource.ResourceKey;
 import com.enonic.xp.testing.ScriptRunnerSupport;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MustacheScriptTest
     extends ScriptRunnerSupport
@@ -21,7 +21,7 @@ public class MustacheScriptTest
 
     private void assertHtmlEquals( final String expectedHtml, final String actualHtml )
     {
-        Assert.assertEquals( normalizeText( expectedHtml ), normalizeText( actualHtml ) );
+        assertEquals( normalizeText( expectedHtml ), normalizeText( actualHtml ) );
     }
 
     public void assertHtmlEquals( final ResourceKey resource, final String actualHtml )
