@@ -1,0 +1,11 @@
+[versions]
+jmustache = "1.16"
+junit = "6.0.3"
+mockito-core = "5+"
+
+[libraries]
+jmustache = { module = "com.samskivert:jmustache", version.ref = "jmustache" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito-core" }
