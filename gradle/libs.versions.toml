@@ -1,6 +1,6 @@
 [versions]
 jmustache = "1.16"
-junit = "6.1.1"
+junit = "6.1.2"
 mockito-core = "5+"
 
 [libraries]
