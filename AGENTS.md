@@ -10,9 +10,34 @@ bean.
 lib-cron's `includeLib`/`copyLibFiles` pattern here; it would change the published artifact.
 
 The library runs under the consuming app's script engine, which defaults to Nashorn in XP 8, so the
-shipped JavaScript must stay ES5-safe.
+shipped JavaScript must stay ES5-safe. `tsc` gates the built-ins through `lib: ES5`, and esbuild
+gates the syntax through `target: es5` — esbuild is the only one of the two that shapes the output,
+since `tsconfig.json` sets `noEmit`. `target` is `ES2015` there only because TypeScript 7 removed
+`ES5`.
 
-`lib/mustache.js` is a fixed path — 3.x consumers call `require('/lib/mustache')`.
+Do not widen `lib` past `ES5`. It is the gate that fails silently: esbuild passes built-ins through
+untouched, so the break lands on the consumer's engine rather than in this build.
+
+The bundle ships as `lib/mustache.js` and that path is fixed — 3.x consumers call
+`require('/lib/mustache')`.
+
+`src/main/resources/lib/examples/mustache/render.js` stays plain JavaScript. It is not an entry
+point; `MustacheScriptTest` executes it through `testInstance.runScript(...)`, and
+`processResources` copies it alongside the esbuild output.
+
+## Commands
+
+```bash
+./gradlew build             # full build (production by default): esbuild -> build/esbuild, jar, Java tests on both engines
+./gradlew build -Penv=dev   # dev build (source maps)
+pnpm build                  # dev esbuild bundle only -> build/esbuild
+pnpm check                  # type-check (tsc) + lint/format (biome)
+pnpm fix                    # auto-fix lint + formatting
+```
+
+`xp.scriptEngines` gives `check` a `test` task on Nashorn and a `testGraalJS` task on GraalJS.
+`MustacheScriptTest` drives the emitted bundle through `ScriptRunnerSupport`, so both engines
+execute the library's own JavaScript. Both must stay green.
 
 ## Branches
 

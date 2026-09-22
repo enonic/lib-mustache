@@ -4,6 +4,9 @@ temp/
 temp/*.*
 target/
 .gradle/
+node_modules/
+npm-debug.log
+.tscache
 *.iws
 *.ids
 *.iml
