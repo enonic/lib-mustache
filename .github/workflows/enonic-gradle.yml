@@ -17,12 +17,14 @@ jobs:
       release: ${{ steps.build-and-publish.outputs.release }}
     permissions:
       contents: read
+      id-token: write # npm trusted publishing (OIDC) of @enonic-types/lib-mustache from build/types
     steps:
       - id: build-and-publish
         uses: enonic/release-tools/build-and-publish@master
         with:
           repoUser: ci
           repoPassword: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          npmPublish: true
           releaseBranch: |
             master
             3.x

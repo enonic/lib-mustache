@@ -1,0 +1,23 @@
+{
+    "name": "@enonic-types/lib-mustache",
+    "version": "0.0.0",
+    "description": "Type definitions for the Enonic XP Mustache library (/lib/mustache)",
+    "types": "mustache.d.ts",
+    "files": ["mustache.d.ts"],
+    "keywords": ["enonic", "enonic-xp", "lib-mustache", "mustache", "types", "typescript"],
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/enonic/lib-mustache#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/enonic/lib-mustache.git"
+    },
+    "bugs": {
+        "url": "https://github.com/enonic/lib-mustache/issues"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@enonic-types/core": "^8.0.0"
+    }
+}

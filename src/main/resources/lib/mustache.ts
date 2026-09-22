@@ -49,7 +49,7 @@ const service = __.newBean<MustacheService>('com.enonic.lib.mustache.MustacheSer
  *   empty model rather than failing.
  * @returns The rendered output.
  */
-export function render(view: ResourceKey, model?: Record<string, unknown>): string {
+export function render(view: ResourceKey, model?: object): string {
     const processor = service.newProcessor();
     processor.setView(view);
     processor.setModel(__.toScriptValue(model));
